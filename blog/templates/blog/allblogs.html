@@ -1,14 +1,14 @@
 
 <!doctype html>
-<html lang="en">
 {% load staticfiles %}
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.6">
-    <title>Manimay Raj</title>
+    <title>Blog page</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/album/">
 
@@ -55,45 +55,30 @@
           <div class="navbar-nav ml-auto">
             <a class="nav-item nav-link" href="http://twitter.com">Twitter</a>
             <a class="nav-item nav-link" href="{% static 'resume.pdf' %}">Resume</a>
-            <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
+            <a class="nav-item nav-link active" href="{% url 'allblogs' %}">Blog</a>
           </div>
         </div>
       </nav>
 </header>
 
 <main role="main">
-
-  <section class="jumbotron text-center">
-    <div class="container">
-      <h1>Hi! I am Mani</h1>
-      <p class="lead text-muted">Hi! My name is Manimay Raj and i love making django websites. It's the thrill of handling requests that the people want</p>
-      <p>
-        <a href="mailto:manimayraj@live.in" class="btn btn-primary my-2">e-mail</a>
-      </p>
-      <img src="{% static 'manipic.jpg' %}" height=300 width=270/>
-    </div>
-  </section>
-
-  <div class="album py-5 bg-light">
-    <div class="container">
-
-      <div class="row">
-
-        {% for job in jobs.all %}
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <img class="bd-placeholder-img card-img-top" src="{{ job.image.url }}"/>
-            <div class="card-body">
-              <p class="card-text">{{ job.summary }}</p>
+  <div class="container">
 
 
-            </div>
-          </div>
-        </div>
+  <h1 class="text-center pt-5"> Blog</h1>
+  <br/>
+  <br/>
+  <h2>Latest Posts</h2>
+<hr/>
+{% for blog in blogs.all %}
+<a href="{% url 'detail' blog.id %}"><h3>{{ blog.title }}</h3></a>
+{{ blog.pub_date_pretty }}
+<br/>
+<img class="image-fluid" src="{{ blog.image.url }}" height=200 width=200/>
+<br/>
+<p> {{ blog.summary }}</p>
 {% endfor %}
-        </div>
-      </div>
-    </div>
+</div>
 
 </main>
 
